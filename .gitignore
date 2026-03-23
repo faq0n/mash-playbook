@@ -1,5 +1,3 @@
-/inventory
-
 # ignore files created by running pre-commit locally
 .ansible
 
@@ -24,3 +22,6 @@
 
 /group_vars/*
 !/group_vars/.gitkeep
+
+# leave out Nix
+result/
