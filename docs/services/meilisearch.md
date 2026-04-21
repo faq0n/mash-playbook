@@ -27,6 +27,7 @@ Meilisearch is a typo-tolerant fulltext search engine like ElasticSearch with a 
 See the project's [documentation](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch) to learn what Meilisearch does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Meilisearch](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md) online
 - 📁 `roles/galaxy/meilisearch/docs/configuring-meilisearch.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -54,6 +55,14 @@ meilisearch_enabled: true
 # /meilisearch                                                         #
 #                                                                      #
 ########################################################################
+```
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+meilisearch_environment_variables_master_key: YOUR_SECRET_KEY_HERE
 ```
 
 ### Expose the instance publicly (optional)

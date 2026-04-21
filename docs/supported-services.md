@@ -28,7 +28,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
 | [Adminer](https://www.adminer.org/) | Full-featured database management tool written in PHP | [Link](services/adminer.md) |
 | [An Otter Wiki](https://otterwiki.com/) | Minimalistic wiki powered by Python, Markdown and Git | [Link](services/otterwiki.md) |
-| [Anki](https://docs.ankiweb.net/sync-server.html) | Synchronization server for Anki, a flashcard program that helps you spend more time on challenging material, and less on what you already know | [Link](services/anki.md) |
+| [Anki](https://docs.ankiweb.net/sync-server.html) | Data synchronization server for [Anki](https://apps.ankiweb.net) | [Link](services/anki.md) |
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
 | [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
 | [Apache NiFi](https://nifi.apache.org/) | An easy to use, powerful, and reliable system to process and distribute data | [Link](services/nifi.md) |
@@ -107,6 +107,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Headplane](https://headplane.net/) | A feature-complete Web UI for Headscale | [Link](services/headplane.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
 | [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
+| [HeyForm](https://github.com/heyform/heyform) | Form builder that lets you create, customize, and automate forms | [Link](services/heyform.md) |
 | [Homarr](https://homarr.dev/) | Highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system | [Link](services/homarr.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [I hate money](https://github.com/spiral-project/ihatemoney) | A shared budget manager | [Link](services/ihatemoney.md) |
@@ -145,6 +146,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [MediaWiki](https://www.mediawiki.org) | Popular wiki software | [Link](services/mediawiki.md) |
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
 | [Memcached](https://memcached.org) | In-memory key-value store | [Link](services/memcached.md) |
+| [Memos](https://usememos.com/) | Markdown-native note-taking tool | [Link](services/memos.md) |
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
@@ -161,7 +163,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
 | [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based forum software | [Link](services/nodebb.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
-| [ntfy](https://ntfy.sh/) | Simple HTTP-based pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests | [Link](services/ntfy.md) |
+| [ntfy](https://ntfy.sh/) | Pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively | [Link](services/oauth2-proxy.md) |
 | [Onion Service with C Tor](https://community.torproject.org/onion-services/) | Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor) | [Link](services/onion-service-tor.md) |
 | [ONLYOFFICE Docs](https://helpcenter.onlyoffice.com/docs) | Online office suite comprising viewers and editors | [Link](services/onlyoffice-docs.md) |
@@ -180,12 +182,12 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Management tool for Postgres with a graphical interface | [Link](services/pgadmin.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](services/phpmyadmin.md) |
-| [PinePods](https://www.pinepods.online/) | Podcast management system that manages podcasts with multi-user support | [Link](services/pinepods.md) |
+| [PinePods](https://www.pinepods.online/) | Podcast management system with multi-user support | [Link](services/pinepods.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
 | [PoodleDonts](https://git.private.coffee/PrivateCoffee/poodledonts) | Privacy-friendly Google Fonts proxy | [Link](services/poodledonts.md) |
-| [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
+| [PostGIS](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful object-relational database system | [Link](services/postgres.md) |
 | [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgreSQL to local filesystem with periodic backups | [Link](services/postgres-backup.md) |
 | [PrivateBin](https://privatebin.info/) | Minimalist online pastebin where the server has zero knowledge of pasted data | [Link](services/privatebin.md) |
@@ -209,6 +211,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker | [Link](services/redis.md) |
 | [Redlib](https://github.com/redlib-org/redlib) | Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/redlib.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application | [Link](services/redmine.md) |
+| [Reitti](https://www.dedicatedcode.com/projects/reitti/) | Personal location tracking and analysis application | [Link](services/reitti.md) |
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | Generates web feeds for websites that do not have one | [Link](services/rssbridge.md) |
 | [RSSHub](https://docs.rsshub.app/) | Create RSS feeds from web pages | [Link](services/rsshub.md) |

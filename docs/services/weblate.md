@@ -27,6 +27,7 @@ Weblate is a web-based translation tool with tight version control integration.
 See the project's [documentation](https://docs.weblate.org/) to learn what Weblate does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Weblate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md) online
 - 📁 `roles/galaxy/weblate/docs/configuring-weblate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -134,7 +135,6 @@ mash_playbook_service_base_directory_name_prefix: 'weblate-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -166,13 +166,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Weblate to its dedicated Valkey instance
 weblate_redis_hostname: mash-weblate-valkey
 
-# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
-weblate_systemd_required_services_list_custom:
-  - "mash-weblate-valkey.service"
-
 # Make sure the Weblate service (mash-weblate.service) is connected to the container network of its dedicated Valkey service (mash-weblate-valkey)
 weblate_container_additional_networks_custom:
   - "mash-weblate-valkey"
+
+# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
+weblate_systemd_required_services_list_custom:
+  - "mash-weblate-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -204,7 +204,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # weblate                                                              #
@@ -216,13 +215,13 @@ valkey_enabled: true
 # Point Weblate to the shared Valkey instance
 weblate_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
-weblate_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Weblate container is connected to the container network of its dedicated Valkey service (mash-weblate-valkey)
+# Make sure the Weblate container is connected to the container network of the shared Valkey service (mash-valkey)
 weblate_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Weblate service (mash-weblate.service) starts after the shared Valkey service (mash-valkey.service)
+weblate_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

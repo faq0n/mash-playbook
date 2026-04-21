@@ -22,7 +22,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Paperless-ngx
 
-[Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
+The playbook can install and configure [Paperless-ngx](https://paperless-ngx.com) for you.
+
+Paperless-ngx is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
+
+See the project's [documentation](https://docs.paperless-ngx.com/) to learn what Paperless-ngx does and why it might be useful to you.
 
 ## Dependencies
 
@@ -144,7 +148,6 @@ mash_playbook_service_base_directory_name_prefix: 'paperless-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -176,13 +179,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Paperless-ngx to its dedicated Valkey instance
 paperless_redis_hostname: mash-paperless-valkey
 
-# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated Valkey service (mash-paperless-valkey.service)
-paperless_systemd_required_services_list_custom:
-  - "mash-paperless-valkey.service"
-
 # Make sure the Paperless-ngx container is connected to the container network of its dedicated Valkey service (mash-paperless-valkey)
 paperless_container_additional_networks_custom:
   - "mash-paperless-valkey"
+
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated Valkey service (mash-paperless-valkey.service)
+paperless_systemd_required_services_list_custom:
+  - "mash-paperless-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -214,7 +217,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # paperless                                                            #
@@ -226,13 +228,13 @@ valkey_enabled: true
 # Point Paperless-ngx to the shared Valkey instance
 paperless_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared Valkey service (mash-valkey.service)
-paperless_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Paperless-ngx container is connected to the container network of the shared Valkey service (mash-valkey)
 paperless_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared Valkey service (mash-valkey.service)
+paperless_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

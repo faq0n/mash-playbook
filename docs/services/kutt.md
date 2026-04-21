@@ -27,6 +27,7 @@ Kutt is a modern URL shortener with support for custom domains with functions li
 See the project's [documentation](https://github.com/thedevs-network/kutt/blob/main/README.md) to learn what Kutt does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Kutt](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
 - 📁 `roles/galaxy/kutt/docs/configuring-kutt.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -147,7 +148,6 @@ mash_playbook_service_base_directory_name_prefix: 'kutt-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -179,13 +179,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Kutt to its dedicated Valkey instance
 kutt_redis_hostname: mash-kutt-valkey
 
-# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "mash-kutt-valkey.service"
-
 # Make sure the Kutt container is connected to the container network of its dedicated Valkey service (mash-kutt-valkey)
 kutt_container_additional_networks_custom:
   - "mash-kutt-valkey"
+
+# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "mash-kutt-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -217,7 +217,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # kutt                                                                 #
@@ -229,13 +228,13 @@ valkey_enabled: true
 # Point Kutt to the shared Valkey instance
 kutt_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Kutt container is connected to the container network of the shared Valkey service (mash-valkey)
 kutt_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

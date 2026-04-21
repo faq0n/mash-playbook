@@ -27,6 +27,7 @@ Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) th
 See the project's [documentation](https://pocket-id.org/docs/) to learn what Pocket ID does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Pocket ID](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md) online
 - 📁 `roles/galaxy/pocket_id/docs/configuring-pocket-id.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -64,6 +65,14 @@ pocket_id_hostname: pocketid.example.com
 ```
 
 **Note**: hosting Pocket ID under a subpath (by configuring the `pocket_id_path_prefix` variable) does not seem to be possible due to Pocket ID's technical limitations.
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+pocket_id_environment_variable_encryption_key: YOUR_SECRET_KEY_HERE
+```
 
 ### Select database to use (optional)
 

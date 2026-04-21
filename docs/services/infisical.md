@@ -1,15 +1,18 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Infisical
 
-[Infisical](https://infisical.com/) is an open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure.
+The playbook can install and configure [Infisical](https://infisical.com/) for you.
 
+Infisical is an open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure.
+
+See the project's [documentation](https://infisical.com/docs/documentation/guides/introduction) to learn what Infisical does and why it might be useful to you.
 
 ## Dependencies
 
@@ -18,7 +21,6 @@ This service requires the following other services:
 - a [MongoDB](mongodb.md) document-oriented database server
 - a [Traefik](traefik.md) reverse-proxy server
 - a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-
 
 ## Configuration
 
@@ -122,7 +124,6 @@ mash_playbook_service_base_directory_name_prefix: 'infisical-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -155,13 +156,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 infisical_environment_variable_redis_hostname: mash-infisical-valkey
 infisical_environment_variable_redis_cache_host: mash-infisical-valkey
 
-# Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
-infisical_systemd_required_services_list_custom:
-  - "mash-infisical-valkey.service"
-
 # Make sure the Infisical container is connected to the container network of its dedicated Valkey service (mash-infisical-valkey)
 infisical_container_additional_networks_custom:
   - "mash-infisical-valkey"
+
+# Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
+infisical_systemd_required_services_list_custom:
+  - "mash-infisical-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -193,7 +194,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # infisical                                                            #
@@ -206,13 +206,13 @@ valkey_enabled: true
 infisical_environment_variable_redis_hostname: "{{ valkey_identifier }}"
 infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
-# Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
-infisical_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Infisical container is connected to the container network of the shared Valkey service (mash-valkey)
 infisical_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
+infisical_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

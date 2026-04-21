@@ -27,6 +27,7 @@ Docmost is an free and open-source collaborative wiki and documentation software
 See the project's [documentation](https://docmost.com/docs/) to learn what Docmost does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Docmost](https://github.com/mother-of-all-self-hosting/ansible-role-docmost), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
 - 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -163,7 +164,6 @@ mash_playbook_service_base_directory_name_prefix: 'docmost-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -195,13 +195,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Docmost to its dedicated Valkey instance
 docmost_redis_hostname: mash-docmost-valkey
 
-# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
-  - "mash-docmost-valkey.service"
-
 # Make sure the Docmost service (mash-docmost.service) is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
 docmost_container_additional_networks_custom:
   - "mash-docmost-valkey"
+
+# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
+docmost_systemd_required_services_list_custom:
+  - "mash-docmost-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -233,7 +233,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # docmost                                                              #
@@ -245,13 +244,13 @@ valkey_enabled: true
 # Point Docmost to the shared Valkey instance
 docmost_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Docmost container is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
+# Make sure the Docmost container is connected to the container network of the shared Valkey service (mash-valkey)
 docmost_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Docmost service (mash-docmost.service) starts after the shared Valkey service (mash-valkey.service)
+docmost_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -291,3 +290,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 ## Related services
 
 - [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
+- [Outline](outline.md) — Knowledge base for growing teams

@@ -1,15 +1,18 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Notfellchen
 
-[Notfellchen](https://codeberg.org/moanos/notfellchen) is a self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home.
+The playbook can install and configure [Notfellchen](https://codeberg.org/moanos/notfellchen) for you.
 
+Notfellchen is a self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home.
+
+See the project's [documentation](https://codeberg.org/moanos/notfellchen/src/branch/main/README.md) to learn what Notfellchen does and why it might be useful to you.
 
 > [!WARNING]
 > This service is a custom solution. Feel free to use it but don't expect a solution that works for every use case. Issues with this should be filed in the [project itself](https://codeberg.org/moanos/notfellchen).
@@ -114,7 +117,6 @@ mash_playbook_service_base_directory_name_prefix: 'notfellchen-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -146,13 +148,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point notfellchen to its dedicated Valkey instance
 notfellchen_config_redis_hostname: mash-notfellchen-valkey
 
-# Make sure the notfellchen service (mash-notfellchen.service) starts after its dedicated Valkey service
+# Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of its dedicated Valkey service (mash-notfellchen-valkey)
+notfellchen_container_additional_networks_custom:
+  - "mash-notfellchen-valkey"
+
+# Make sure the notfellchen service (mash-notfellchen.service) starts after its dedicated Valkey service (mash-notfellchen-valkey.service)
 notfellchen_systemd_required_services_list_custom:
   - "mash-notfellchen-valkey.service"
-
-# Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of its dedicated Valkey service
-notfellchen_api_container_additional_networks_custom:
-  - "mash-notfellchen-valkey"
 
 ########################################################################
 #                                                                      #
@@ -184,7 +186,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # notfellchen                                                          #
@@ -196,13 +197,13 @@ valkey_enabled: true
 # Point notfellchen to the shared Valkey instance
 notfellchen_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the notfellchen API service (mash-notfellchen.service) starts after the shared Valkey service
-notfellchen_api_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the notfellchen API service (mash-notfellchen.service) is connected to the container network of the shared Valkey service
+# Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of the shared Valkey service
 notfellchen_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the notfellchen service (mash-notfellchen.service) starts after the shared Valkey service (mash-valkey.service)
+notfellchen_api_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
